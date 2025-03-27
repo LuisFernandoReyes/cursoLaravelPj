@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CursoController;
 
-Route::get('/', [CursoController::class, 'getName'])->parameters(['name' => 'Hola mundo'])->name('home');
+Route::get('/', [CursoController::class, 'getName'])->name('home');
 
 Route::get('/index', [CursoController::class, 'index'])->name('index');
 
@@ -13,6 +13,10 @@ Route::get('/hola', function() {
 })->name('hola');
 
 Route::get('/suma',[CursoController::class, 'suma'])->name('sumota');
+Route::get('/resta',[CursoController::class, 'resta'])->name('resta');
+Route::get('/multiplicacion',[CursoController::class, 'multiplicacion'])->name('multi');
+Route::get('/division',[CursoController::class, 'division'])->name('div');
+
 
 //Indica que va a recibir un valor
 Route::get('/suma/{X}/{Y}', function($x,$y) {
@@ -27,10 +31,10 @@ Route::get('/nombre/{name?}', function($nombre='Juan') {
     return "El nombre es: ".$nombre;
 })->where('name', '[A-Za-z]+');
 
-Route::get('/sumaNumbers/{x}/{y}', function ($x, $y) { 
-    $a = [1, 2, 3, 4]; 
-    $aa = ['nombre' => 'Juan', 'apellido' => 'Perez']; 
-    return 'La suma es: ' . ($x + $y); 
+Route::get('/sumaNumbers/{x}/{y}', function ($x, $y) {
+    $a = [1, 2, 3, 4];
+    $aa = ['nombre' => 'Juan', 'apellido' => 'Perez'];
+    return 'La suma es: ' . ($x + $y);
 })->where(['x' => '[0-9]+', 'y' => '[0-9]+']);
 
 Route::redirect('/sumar', '/cursoLaravelPj/public/suma');
